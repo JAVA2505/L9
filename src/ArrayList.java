@@ -16,9 +16,6 @@ public class ArrayList implements List {
     @Override
     public void add(int index, Integer elem) {
         Integer[] tmp = new Integer[mas.length + 1];
-//        for(int i = 0; i < mas.length; i++){
-//            tmp[i] = mas[i];
-//        }
         System.arraycopy(mas, 0, tmp, 0, index);
         tmp[index] = elem;
         System.arraycopy(mas, index, tmp, index + 1, mas.length - index);
@@ -27,7 +24,7 @@ public class ArrayList implements List {
 
     @Override
     public Integer remove(int index) {
-        Integer[] tmp = new Integer[mas.length + 1];
+        Integer[] tmp = new Integer[mas.length - 1];
         System.arraycopy(mas, 0, tmp, 0, index);
         System.arraycopy(mas, index + 1, tmp, index, mas.length - index - 1);
         Integer out = mas[index];
@@ -37,7 +34,7 @@ public class ArrayList implements List {
 
     @Override
     public void set(int index, Integer elem) {
-
+        mas[index] = elem;
     }
 
     @Override
@@ -47,21 +44,24 @@ public class ArrayList implements List {
 
     @Override
     public void clear() {
-
+        mas = new Integer[0];
     }
 
     @Override
     public int size() {
-        return 0;
+        return mas.length;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return mas.length == 0;
     }
 
     @Override
     public boolean contains(Integer elem) {
+        for (Integer i : mas) {
+            if (i.equals(elem)) return true;
+        }
         return false;
     }
 
