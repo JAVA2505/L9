@@ -44,22 +44,38 @@ public class LinkedList implements List {
 
     @Override
     public Integer remove(int index) {
+        
+
+
         return null;
     }
 
     @Override
     public void set(int index, Integer elem) {
-
+        Element e = new Element(elem);
+        if (index == 0) {
+            e.next = first;
+            first = e;
+        } else {
+            Element tmp = first;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.next;
+            }
+            e.next = tmp.next;
+            tmp.next = e;
+        }
     }
 
     @Override
     public Integer get(int index) {
+
         return null;
     }
 
     @Override
     public void clear() {
 
+        first = null;
     }
 
     @Override

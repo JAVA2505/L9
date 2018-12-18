@@ -67,11 +67,23 @@ public class ArrayList implements List {
 
     @Override
     public int indexOf(Integer elem) {
-        return 0;
+        for(int i=0; i < mas.length; i++){
+            if(mas[i].equals(elem)){
+               return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Integer elem) {
-        return 0;
+        for(int i=mas.length-1; i>=0; i--){
+            if(mas[i].equals(elem)){
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

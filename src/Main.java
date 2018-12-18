@@ -35,6 +35,17 @@ public class Main<T> {
             System.out.println(o.get(i));
         }
 
+        System.out.println(o.indexOf(9));
+
+        System.out.println(o.indexOf(23));
+        System.out.println(o.lastIndexOf(51));
+
+        List u = new LinkedList();
+        u.add(23);
+        u.add(34);
+        u.add(51);
+        u.add(1, 88);
+
     }
 
 
