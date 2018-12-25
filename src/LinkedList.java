@@ -7,6 +7,10 @@ public class LinkedList implements List {
         public Element(Integer elem) {
             this.elem = elem;
         }
+
+        public Element() {
+            this.elem = elem;
+        }
     }
 
     private Element first = null;
@@ -44,36 +48,53 @@ public class LinkedList implements List {
 
     @Override
     public Integer remove(int index) {
-        return null;
+
+        if (index ==0) {
+            next = first;            ;
+        }else {
+            for  (int i = 0; i < index - 1; i++) {
+                tmp = tmp.next;
+            }
+        }
+            return null;
     }
 
     @Override
     public void set(int index, Integer elem) {
 
+
     }
 
     @Override
     public Integer get(int index) {
-        return null;
+        return index;
     }
 
     @Override
     public void clear() {
-
+        first = null;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size();
     }
 
     @Override
     public boolean isEmpty() {
+        if (size() == 0) {
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean contains(Integer elem) {
+        for (int i = 0; i < size(); i++) {
+            if (i == elem) {
+                return true;
+            }
+        }
         return false;
     }
 
