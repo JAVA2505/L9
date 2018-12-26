@@ -40,7 +40,6 @@ public class LinkedList implements List {
             for (int i = 1; i < index; i++) {
                 tmp = tmp.next;
             }
-
             e.next = tmp.next;
             tmp.next = e;
         }
