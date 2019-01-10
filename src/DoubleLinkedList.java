@@ -29,13 +29,15 @@ public class DoubleLinkedList implements List {
     @Override
     public void add(int index, Integer elem) {
         Element e = new Element(elem);
+        //TODO: if last element added
         if (index == 0) {
             e.next = first;
             first.prev = e;
             first = e;
         } else {
-            Element tmp = first;
+            Element tmp;
             if (index < size() / 2) {
+                tmp = first;
                 for (int i = 1; i < index; i++) {
                     tmp = tmp.next;
                 }
@@ -54,7 +56,38 @@ public class DoubleLinkedList implements List {
 
     @Override
     public Integer remove(int index) {
-        return null;
+        Integer out = null;
+        if (index == 0 && size() > 1) {
+            out = first.elem;
+            first.next.prev = null;
+            first = first.next;
+        } else if (index == size() - 1 && size() > 1) {
+            out = last.elem;
+            last.prev.next = null;
+            last = last.prev;
+        } else if (index == 0 && size() == 1) {
+            out = first.elem;
+            last = null;
+            first = null;
+        } else {
+            Element tmp;
+            if (index < size() / 2) {
+                tmp = first;
+                for (int i = 1; i < index; i++) {
+                    tmp = tmp.next;
+                }
+            } else {
+                tmp = last;
+                for (int i = size() - 1; i >= index; i--) {
+                    tmp = tmp.prev;
+                }
+            }
+            out = tmp.next.elem;
+            tmp.next.next.prev = tmp;
+            tmp.next = tmp.next.next;
+
+        }
+        return out;
     }
 
     @Override
