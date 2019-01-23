@@ -81,6 +81,25 @@ public class Main<T> {
         System.out.println(u.isEmpty());
      //   System.out.println(u.get(0));
      //   System.out.println(u.get(1));
+        System.out.println("============= Double Linked List =============");
+        List yar = new DoubleLinkedList();
+        yar.add(11);
+        yar.add(22);
+        yar.add(33);
+        yar.add(44);
+        yar.add(55);
+        yar.add(5,999);
+        yar.add(6,1);
+        yar.add(6,47);
+       // yar.set(0,77);
+      //  yar.set(5,88);
+        //yar.set(6,99);
+       // yar.remove(4);
+
+        for (int i = 0; i < yar.size(); i++) {
+            System.out.println(yar.get(i));
+        }
+        System.out.println("size: "+yar.size());
     }
 
 

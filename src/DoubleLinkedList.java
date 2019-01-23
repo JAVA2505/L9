@@ -9,7 +9,7 @@ public class DoubleLinkedList implements List {
             this.elem = elem;
         }
     }
-
+    private int num = 0;
     private Element first = null;
     private Element last = null;
 
@@ -24,6 +24,7 @@ public class DoubleLinkedList implements List {
             e.prev = last;
             last = e;
         }
+        num++;
     }
 
     @Override
@@ -34,7 +35,13 @@ public class DoubleLinkedList implements List {
             e.next = first;
             first.prev = e;
             first = e;
-        } else {
+        }else
+        if (index == size()) {
+            e.prev = last;
+            last.next=e;
+            last = e;
+        }
+        else {
             Element tmp;
             if (index < size() / 2) {
                 tmp = first;
@@ -52,6 +59,7 @@ public class DoubleLinkedList implements List {
             tmp.next.prev = e;
             tmp.next = e;
         }
+        num++;
     }
 
     @Override
@@ -87,46 +95,100 @@ public class DoubleLinkedList implements List {
             tmp.next = tmp.next.next;
 
         }
+        num--;
         return out;
     }
 
     @Override
     public void set(int index, Integer elem) {
 
+            Element tmp;
+            if (index < size() / 2) {
+                tmp = first;
+                for (int i = 0; i < index; i++) {
+                    tmp = tmp.next;
+                }
+            } else {
+                tmp = last;
+                for (int i = size() - 1; i >= index+1; i--) {
+                    tmp = tmp.prev;
+                }
+            }
+            tmp.elem = elem;
+
+
     }
 
     @Override
     public Integer get(int index) {
-        return null;
+        Element tmp;
+        if (index < size() / 2) {
+            tmp = first;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.next;
+            }
+        } else {
+            tmp = last;
+            for (int i = size() - 1; i >= index+1; i--) {
+                tmp = tmp.prev;
+            }
+        }
+
+        return tmp.elem;
     }
 
     @Override
     public void clear() {
+        first = null;
+        last = null;
+        num = 0;
 
     }
 
     @Override
     public int size() {
-        return 0;
+        return num;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return num == 0;
     }
 
     @Override
     public boolean contains(Integer elem) {
+        Element tmp = first;
+        for (int i = 0; i < size(); i++) {
+            if (tmp.elem.equals(elem)) {
+                return true;
+            }
+            tmp = tmp.next;
+        }
         return false;
     }
 
     @Override
     public int indexOf(Integer elem) {
-        return 0;
+        Element tmp = first;
+        for (int i = 0; i < size(); i++) {
+            if (tmp.elem.equals(elem)) {
+                return i;
+            }
+            tmp = tmp.next;
+        }
+
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Integer elem) {
-        return 0;
+        Element tmp = last;
+        for (int i = size()-1; i < size(); i--) {
+            if (tmp.elem.equals(elem)) {
+                return i;
+            }
+            tmp = tmp.prev;
+        }
+        return -1;
     }
 }
